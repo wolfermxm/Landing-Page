@@ -47,96 +47,110 @@ let isActive = null;
 sectionList.forEach(function(userItem) {
   //Create anchor element and intilize its attributes
   const creatLink = document.createElement("a");
-  creatLink.href = "#" + userItem.id;
+  creatLink.href = "#"
   creatLink.textContent = userItem.dataset.nav;
-  // creatLink.setAttribute("id",userItem.id);
   //Create li element and add class "navbar__list" to it
   const creatLi = document.createElement("li");
+  creatLi.className = "navbar__menu";
   //append anchor to li then li to ul
-  creatLi.dataset.label=userItem.id;
+  creatLi.dataset.label = userItem.id;
   creatLi.appendChild(creatLink);
   navUl.appendChild(creatLi);
 
 
 });
 
-/**
-event listener for scrolling to determine the active section
-**/
-document.addEventListener('scroll', function() {
-  //loop over section elements
-  sectionList.forEach(function(userItem) {
-    //check if the section element is in the viewport
-    // by comparing if element top
-    if (userItem.getBoundingClientRect().top <= 50 &&
-      userItem.getBoundingClientRect().bottom > 100) {
-      // assigning the name of section to isActive
-      isActive = userItem.id;
-    }
-  });
-
-  // removing active class from all sections
-  sectionList.forEach(function(userItem) {
-    userItem.classList.remove("your-active-class");
-  });
-  if (isActive) {
-    const activClass = document.getElementById(isActive);
-    // // Add class 'active' to section when near top of viewport
-    activClass.classList.add("your-active-class");
-  }
-
-  const anchorList = document.querySelector("nav").querySelectorAll("li");
-  anchorList.forEach(function(userItem) {
-
-    // console.log(userItem.id);
-    if (userItem.dataset.label === isActive) {
-      userItem.classList.add("navbar_active");
-
-    } else {
-      userItem.classList.remove("navbar_active");
-    }
 
 
-  });
+const anchorList = document.querySelector("nav").querySelectorAll("a");
+
+anchorList.forEach(function(userItem,num) {
+      userItem.addEventListener('click', function(event) {
+        event.preventDefault();
+        sectionList[num].scrollIntoView({
+          behavior: 'smooth'
+        });
+
+      });
+
+    });
+      /**
+      event listener for scrolling to determine the active section
+      **/
+      document.addEventListener('scroll', function() {
+        //loop over section elements
+        sectionList.forEach(function(userItem) {
+          //check if the section element is in the viewport
+          // by comparing if element top
+          if (userItem.getBoundingClientRect().top <= 50 &&
+            userItem.getBoundingClientRect().bottom > 100) {
+            // assigning the name of section to isActive
+            isActive = userItem.id;
+          }
+        });
+
+        // removing active class from all sections
+        sectionList.forEach(function(userItem) {
+          userItem.classList.remove("your-active-class");
+        });
+        if (isActive) {
+          const activClass = document.getElementById(isActive);
+          // // Add class 'active' to section when near top of viewport
+          activClass.classList.add("your-active-class");
+        }
+
+        const liList = document.querySelector("nav").querySelectorAll("li");
+        liList.forEach(function(userItem) {
+
+          // console.log(userItem.id);
+          if (userItem.dataset.label === isActive) {
+            userItem.classList.add("navbar_active");
+
+          } else {
+            userItem.classList.remove("navbar_active");
+          }
 
 
-});
+        });
 
 
-
-
-
-
-
-var timer = null;
-//hide the nav bar if user is inactive for 15 seconds
-//bring nav bar back by a click event
-window.addEventListener('scroll', function() {
-  if (timer !== null) {
-    clearTimeout(timer);
-  }
-  timer = setTimeout(function() {
-    document.querySelector("nav").style.display = "none";
-  }, 15000);
-}, false);
-window.addEventListener('click', function() {
-  document.querySelector("nav").style.display = "block";
-});
+      });
 
 
 
 
-// Scroll to anchor ID using scrollTO event
 
 
-/**
- * End Main Functions
- * Begin Events
- *
- */
 
-// Build menu
+      var timer = null;
+      //hide the nav bar if user is inactive for 15 seconds
+      //bring nav bar back by a click event
+      document.addEventListener('scroll', function() {
+        if (timer !== null) {
+          clearTimeout(timer);
+        }
+        timer = setTimeout(function() {
+          document.querySelector("nav").style.display = "none";
+        }, 15000);
+      }, false);
+      document.addEventListener('click', function() {
+        document.querySelector("nav").style.display = "block";
+      });
 
-// Scroll to section on link click
 
-// Set sections as active
+
+
+      // Scroll to anchor ID using scrollTO event
+
+
+      /**
+       * End Main Functions
+       * Begin Events
+       *
+       */
+
+      // Build menu
+
+      // Scroll to section on link click
+
+      // Set sections as active
