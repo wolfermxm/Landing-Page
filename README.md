@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-* [Project description](#project description)
+* [Project description](#projectdescription)
 * [Usage](#usage)
 
 ## Project description
