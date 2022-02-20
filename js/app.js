@@ -61,7 +61,8 @@ sectionList.forEach(function(userItem) {
 });
 
 
-
+//add click event on anchor elemenrs
+//to scroll to the chosen section
 const anchorList = document.querySelector("nav").querySelectorAll("a");
 
 anchorList.forEach(function(userItem,num) {
