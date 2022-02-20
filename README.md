@@ -2,10 +2,10 @@
 
 ## Table of Contents
 
-* [Instructions](#instructions)
+* [Project description](#project description)
 * [Usage](#usage)
 
-## Instructions
+## Project description
 
 This Project turns normal static landing page into dynamic one with the help of javascript.
 
